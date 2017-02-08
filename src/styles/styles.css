@@ -56,3 +56,12 @@ nav {
   font-size: 6rem;
   line-height: 8rem;
 }
+
+.chat-history {
+  padding: 15px 15px 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}

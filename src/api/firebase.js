@@ -17,8 +17,11 @@ class FirebaseApi {
     });
   }
 
-  static createUserWithEmailAndPassword(user){
-    return firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
+  static createUserWithEmailAndPassword(user) {
+    return firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(u => {
+        return firebase.auth().currentUser.updateProfile({ displayName: user.username })
+            .then(() => Object.assign({}, u, { displayName: user.username }));
+    });
   }
 
   static signInWithEmailAndPassword(user) {
@@ -53,6 +56,14 @@ class FirebaseApi {
       .once('value');
   }
 
+    // static GetCollection(path) {
+    //     return firebase
+    //       .database()
+    //       .ref(path)
+    //       .orderByKey()
+    //       .once('value');
+    // }
+
   static GetChildAddedByKeyOnce(path, key) {
     return firebase
       .database()
@@ -63,12 +74,31 @@ class FirebaseApi {
   }
 
   static databaseSet(path, value) {
-
     return firebase
       .database()
       .ref(path)
       .set(value);
+  }
 
+  static listenChildrenAdded(path, callback) {
+      return firebase
+        .database()
+        .ref(path)
+        .on('child_added', callback);
+  }
+
+  static listenChildrenRemoved(path, callback) {
+      return firebase
+          .database()
+          .ref(path)
+          .on('child_removed', callback);
+  }
+
+  static listenChildrenChanged(path, callback) {
+      return firebase
+          .database()
+          .ref(path)
+          .on('child_changed', callback);
   }
 }
 

@@ -75,6 +75,7 @@
     "react-router-redux": "^4.0.4",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
+    "socket.io": "^1.7.2",
     "toastr": "^2.1.2"
   },
   "repository": {

@@ -19,6 +19,13 @@ const RegistrationForm = ({user, onSave, onChange, saving}) => {
         value={user.password}
         />
 
+        <TextInput
+            name="username"
+            label="Username"
+            onChange={onChange}
+            value={user.username}
+        />
+
       <input
         type="submit"
         disabled={saving}

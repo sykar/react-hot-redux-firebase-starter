@@ -19,17 +19,20 @@ export default function (ComposedComponent){
       }
     }
     render(){
-              return <ComposedComponent {...this.props}/>;
-      }
+      return <ComposedComponent {...this.props}/>;
+    }
   }
   Authentication.contextTypes = {
       router : PropTypes.object
-    };
+  };
   Authentication.propTypes  = {
     authenticated : PropTypes.bool
   };
-  const mapStateToProps = (state) => ({
-    authenticated : state.auth.isLogged
-  });
+  const mapStateToProps = (state) => {
+    return {
+      authenticated: state.auth.isLogged,
+      username: state.user.displayName
+    }
+  };
   return connect(mapStateToProps)(Authentication);
 }

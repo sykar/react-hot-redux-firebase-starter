@@ -6,6 +6,7 @@ import {push} from 'react-router-redux';
 
 import {ajaxCallError, beginAjaxCall} from './ajaxStatusActions';
 import {userLoadedSuccess, userCreated, userIsAdminSuccess} from './userActions';
+import {chatRoomJoined, chatRoomList} from './chatActions';
 
 export function authInitializedDone() {
   return {
@@ -43,6 +44,8 @@ export function authLoggedIn(userUID) {
       .then(
         user => {
           dispatch(userLoadedSuccess(user.val()));
+          dispatch(chatRoomList());
+          // dispatch(chatRoomJoined('main', userUID));
           dispatch(push('/'));
         })
       .catch(
